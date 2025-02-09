@@ -1,24 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная страница</title>
 </head>
 <body>
     <h1>Список объявлений</h1>
 
-    {% for p in post %}
+    {% if post %}
+        {% for p in post %}
+            <p><strong>Владелец:</strong> {{ p.user }}</p>
+            <p><strong>Площадь:</strong> {{ p.square }} м²</p>
+            <p><strong>Город:</strong> {{ p.city }}</p>
+            <p><strong>Улица:</strong> {{ p.street }}</p>
+            <p><strong>Тип недвижимости:</strong> {{ p.get_property_type_display }}</p>
 
-        <p><strong>Владелец:</strong> {{ p.user }}</p>
-        <p><strong>Площадь:</strong> {{ p.square }} м²</p>
-        <p><strong>Город:</strong> {{ p.city }}</p>
-        <p><strong>Улица:</strong> {{ p.street }}</p>
-        <p><strong>Тип недвижимости:</strong> {{ p.get_property_type_display }}</p>
-        <hr>
-    {% endfor %}
+            {% if p.img %}
+                <img src="{{ p.img.url }}" alt="Фото недвижимости">
+            {% else %}
+                <p>Изображение отсутствует</p>
+            {% endif %}
+
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>Нет доступных объявлений.</p>
+    {% endif %}
 
 </body>
 </html>
+``

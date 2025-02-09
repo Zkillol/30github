@@ -6,6 +6,7 @@ class Post(models.Model):
     city = models.CharField('Город', max_length=50 )
     street = models.CharField('Улица' , max_length=50)
     year = models.DateField('год постройки')
+    img = models.ImageField(upload_to='img/' , null=True , blank=True )
     APARTMENT = 'apartment'
     HOUSE = 'house'
 

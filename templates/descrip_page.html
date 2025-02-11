@@ -2,29 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Подробнее о жилище</title>
 </head>
 <body>
-     <h1>{{ post.user }}'s Profile </h1>
-     <p><strong>Площадь:</strong> {{ post.square }} м²</p>
-            <p><strong>Город:</strong> {{ post.city }}</p>
-            <p><strong>Улица:</strong> {{ post.street }}</p>
-            <p><strong>Тип недвижимости:</strong> {{ post.get_property_type_display }}</p>
 
-            {% if post.img %}
-                <img src="{{ post.img.url }}" alt="Фото недвижимости">
-            {% else %}
-                <p>Изображение отсутствует</p>
-            {% endif %}
+    <h1>{{ post.user }}'s Profile</h1>
+    <p><strong>Площадь:</strong> {{ post.square }} м²</p>
+    <p><strong>Город:</strong> {{ post.city }}</p>
+    <p><strong>Улица:</strong> {{ post.street }}</p>
+    <p><strong>Тип недвижимости:</strong> {{ post.get_property_type_display }}</p>
 
+    {% if post.img %}
+        <img src="{{ post.img.url }}" alt="Фото недвижимости">
+    {% else %}
+        <p>Изображение отсутствует</p>
+    {% endif %}
 
-    <p>Комментарии </p>
-    <p>{{comment.user}}</p>
-    <p>{{comment.comment}}</p>
-    <img src="{{ comment.img.url }}" alt="Фото недвижимости">
+    <h2>Комментарии</h2>
 
+    {% if comments %}
+        {% for comment in comments %}
+            <div>
+                <p><strong>{{ comment.user }}</strong></p>
+                <p>{{ comment.comment }}</p>
 
-
+                {% if comment.img %}
+                    <img src="{{ comment.img.url }}" alt="Фото комментария">
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Комментариев пока нет</p>
+    {% endif %}
 
 </body>
 </html>

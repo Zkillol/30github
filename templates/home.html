@@ -8,8 +8,8 @@
 <body>
     <h1>Список объявлений</h1>
 
-    {% if post %}
-        {% for p in post %}
+    {% if posts %}
+        {% for p in posts %}
             <p><strong>Владелец:</strong> {{ p.user }}</p>
             <p><strong>Площадь:</strong> {{ p.square }} м²</p>
             <p><strong>Город:</strong> {{ p.city }}</p>
@@ -20,9 +20,17 @@
                 <img src="{{ p.img.url }}" alt="Фото недвижимости">
             {% else %}
                 <p>Изображение отсутствует</p>
+
+
             {% endif %}
 
-                <button><a href="descrip_page.html">Подробнее</a></button>
+            <!-- ✅ Check if post_id exists before generating the URL -->
+             {% if p.post_id %}
+                <button><a href="{% url 'comments' p.post_id %}">Подробнее</a></button>
+            {% else %}
+                <p>Ошибка: ID объявления отсутствует</p>
+            {% endif %}
+
 
             <hr>
         {% endfor %}
@@ -32,4 +40,3 @@
 
 </body>
 </html>
-``

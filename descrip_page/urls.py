@@ -1,10 +1,8 @@
 from django.urls import path
 from . import views
-
-
-
+from .views import comments
 
 urlpatterns = [
-    path('', views.comments, name='comments'),  # Главная страница
-    path('post/<int:post_id>/', views.comments, name='comments'),  # Детальный просмотр поста
-]
+    path('comments/<int:id>/', views.comments, name='comments'),
+
+    ]

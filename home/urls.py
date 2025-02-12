@@ -4,6 +4,5 @@ from descrip_page.views import comments
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),  # Главная страница
-    path('post/<int:id>/', comments, name='comments'),  # Детальный просмотр поста
+    path('', views.home, name='home'),  # Keep it as a homepage without ID
 ]

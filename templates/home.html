@@ -25,11 +25,9 @@
             {% endif %}
 
             <!-- ✅ Check if post_id exists before generating the URL -->
-             {% if p.post_id %}
-                <button><a href="{% url 'comments' p.post_id %}">Подробнее</a></button>
-            {% else %}
-                <p>Ошибка: ID объявления отсутствует</p>
-            {% endif %}
+             <button><a href="{% url 'comments' id=p.id %}">Подробнее</a></button>
+
+
 
 
             <hr>
